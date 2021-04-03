@@ -49,7 +49,7 @@ func main() {
 	db.AutoMigrate(&User{})
 	// db.Debug()
 
-	//createFakeData(db)
+	createFakeData(db)
 
 	selectMethod(db)
 	smartSelect(db)
