@@ -57,8 +57,8 @@ func readRelation(db *gorm.DB) {
 
 func main() {
 	db, _ := gorm.Open(sqlite.Open("belongs-to.db"), &gorm.Config{})
-	//db = db.Debug()
 	db.AutoMigrate(&User{}, &Company{})
+	//db = db.Debug()
 
 	create(db)
 	read(db)
