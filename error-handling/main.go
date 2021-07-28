@@ -38,34 +38,28 @@ func getFind(db *gorm.DB) {
 
 func getFirst(db *gorm.DB) {
 	var User []User
-	result := db.Where("name = ?", "name3").First(&User)
+	if err := db.Where("name = ?", "name3").First(&User).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+		fmt.Println("error detected! ErrRecordNotFound")
+	}
 	// 検知可能 コード自体は問題なく動く
 	// error : record not found
-	fmt.Println(result.Error)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		fmt.Println("error detected ! ErrRecordNotFound")
-	}
 	fmt.Println(User)
 }
 
 func getLast(db *gorm.DB) {
 	var User []User
-	result := db.Where("name = ?", "name3").Last(&User)
+	if err := db.Where("name = ?", "name3").Last(&User).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+		fmt.Println("error detected! ErrRecordNotFound")
+	}
 	// 検知可能 コード自体は問題なく動く
 	// error : record not found
-	fmt.Println(result.Error)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		fmt.Println("error detected ! ErrRecordNotFound")
-	}
 	fmt.Println(User)
 }
 
 func getTake(db *gorm.DB) {
 	var User []User
-	result := db.Where("name = ?", "name3").Take(&User)
-	fmt.Println(result.Error)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		fmt.Println("error detected ! ErrRecordNotFound")
+	if err := db.Where("name = ?", "name3").Take(&User).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+		fmt.Println("error detected! ErrRecordNotFound")
 	}
 	fmt.Println(User)
 }
